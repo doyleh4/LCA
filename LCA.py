@@ -115,5 +115,5 @@ class Node: #used https://www.tutorialspoint.com/python_data_structure/python_bi
             for h in ancestoryB:
                 if i == h:
                     #print ("The LCA between " + str(a.data) + " and " + str(b.data) + " is " + str(i))
-                    return int(i
+                    return int(i)
 
