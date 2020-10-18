@@ -7,21 +7,36 @@ class Node: #used https://www.tutorialspoint.com/python_data_structure/python_bi
         self.right = None
         self.parent = None
 
-    def insert(self, data): #self is the node you are adding a child to, data is the child node
+    def insertRandom(self, data): #if you do not specify left or right node will be inserted randomly
         if self.data:
-            n = random.randint(1,2) #using a random int to add the data too the tree radnomly
+            n = random.randint(1,2) #using a random int to add the data to the tree radnomly
             if n == 1:
                 if self.left is None:
                     self.left = data
                     data.parent = self
-                else: self.left.insert(data)
+                else: self.left.insertRandom(data)
             else:
                 if self.right is None:
                     self.right = data
                     data.parent = self
-                else: self.right.insert(data)
+                else: self.right.insertRandom(data)
         else:
             self.data = self
+
+    def insert(self, child, x): #x is left or right child
+        if x == "left":
+            if self.left is None:
+                self.left = child
+                child.parent = self
+            #else:
+                 #print("Node could not be added as there is already a left child")
+        elif x == "right":
+            if self.right is None:
+                self.right = child
+                child.parent = self
+            #else:
+                 #print("Node could not be added as there is already a right child")
+        #else: print("Parameter not regognised")
 
 
     def display(self): #got display from https://stackoverflow.com/questions/34012886/print-binary-tree-level-by-level-in-python used to check if LCA answer is right
@@ -99,44 +114,6 @@ class Node: #used https://www.tutorialspoint.com/python_data_structure/python_bi
         for i in ancestoryA:
             for h in ancestoryB:
                 if i == h:
-                    print ("The LCA between " + str(a.data) + " and " + str(b.data) + " is " + str(i))
-                    return
+                    #print ("The LCA between " + str(a.data) + " and " + str(b.data) + " is " + str(i))
+                    return int(i
 
-
-    
-
-
-root = Node(1)
-nodeA = Node(2)
-nodeB = Node(3)
-nodeC = Node(4)
-nodeD = Node(5)
-nodeE = Node(6)
-nodeF = Node(7)
-nodeG = Node(8)
-nodeH = Node(9)
-nodeI = Node(10)
-nodeJ = Node(11)
-nodeK = Node(12)
-nodeL = Node(13)
-nodeM = Node(14)
-nodeN = Node(15)
-nodeO = Node(6)
-root.insert(nodeA)
-root.insert(nodeB)
-root.insert(nodeC)
-root.insert(nodeD)
-root.insert(nodeE)
-root.insert(nodeF)
-root.insert(nodeG)
-root.insert(nodeH)
-root.insert(nodeI)
-root.insert(nodeJ)
-root.insert(nodeK)
-root.insert(nodeL)
-root.insert(nodeM)
-root.insert(nodeN)
-root.insert(nodeO)
-
-root.display()
-root.LowestCommonAncestor(nodeG, nodeK)
