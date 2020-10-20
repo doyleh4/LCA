@@ -1,0 +1,2 @@
+# LCA Tets for C++
+This folder contains all the necessary files and config to open the test in Visual Studio. I will aslo put Test1.cpp in the main folder of the reposiory for ease of viewing but this folder must be opened in VS in order to run the tests

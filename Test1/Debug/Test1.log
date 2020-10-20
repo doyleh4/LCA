@@ -1,0 +1,3 @@
+﻿  Test1.cpp
+C:\Users\Harry Doyle\source\repos\LCA\LCA\LCA.cpp(98): warning C4715: 'Node::LowestCommonAncestor': not all control paths return a value
+  Test1.vcxproj -> C:\Users\Harry Doyle\source\repos\LCA\Debug\Test1.dll
