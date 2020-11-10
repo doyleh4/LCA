@@ -117,3 +117,90 @@ class Node: #used https://www.tutorialspoint.com/python_data_structure/python_bi
                     #print ("The LCA between " + str(a.data) + " and " + str(b.data) + " is " + str(i))
                     return int(i)
 
+class DAGNode:
+    def __init__(self, data):
+        self.data = data
+        self.parents = []
+        self.children = []
+        self.colour = "white"
+        self.degreeA = None
+        self.degree = None
+
+    def insert(self, child):
+        self.children.append(child)
+        child.parents.append(self)
+
+    def LCA(self, b, root):
+        result = None
+        self.colourAncestory("red", 1)
+        b.colourAncestory("blue", 1)
+
+        result = root.findLowestPurple(self, b)
+        return result
+
+
+    def colourAncestory(self,colour, degree):
+       
+        if (self.colour != "red" ):
+            self.colour = colour
+        if (self.colour == "red" and colour == "blue"):
+            self.colour = "purple"
+            self.degree = self.degreeA + degree
+        if self.degreeA == None:
+            self.degreeA = degree
+        elif  degree > self.degreeA:
+            self.degreeA = degree
+        print("Node: " + str(self.data)+ " colour: " +self.colour + " degree: " + str(self.degree))
+        for i in self.parents:
+            i.colourAncestory(colour, self.degreeA+1)
+
+    def findLowestPurple(self, a,  b):
+        lowest = None
+        for i in self.children:
+            if self != a and self != b:
+                if i.colour != "purple": 
+                    i.findLowestPurple(a, b)
+                if lowest == None:
+                    lowest = i     
+                else:
+                    lowest = i   
+        return lowest
+
+        
+        
+#root = DAGNode(1)
+#a = DAGNode(2)
+#b = DAGNode(3)
+#c = DAGNode(4)
+#d = DAGNode(5)
+
+#root.insert(a)
+#root.insert(b)
+#b.insert(c)
+#b.insert(d)
+
+root = DAGNode(1)
+b = DAGNode(3)
+c = DAGNode(4)
+d = DAGNode(5)
+e = DAGNode(6)
+f = DAGNode(7)
+g = DAGNode(8)
+h = DAGNode(9)
+
+root.insert(b)
+root.insert(c)
+root.insert(d)
+b.insert(g)
+b.insert(e)
+c.insert(f)
+g.insert(h)
+e.insert(h)
+f.insert(h)
+
+
+lca = h.LCA(d, root)
+print(lca.data)
+#for node in b.children:
+#    for i in node.parents:
+#        print(i.degreeA)
