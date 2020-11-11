@@ -130,7 +130,7 @@ class DAGNode:
         self.children.append(child)
         child.parents.append(self)
 
-    def LCA(self, b, root):
+    def LCA(self, b, root):     # got idea of how to do this from https://stackoverflow.com/questions/14865081/algorithm-to-find-lowest-common-ancestor-in-directed-acyclic-graph
         result = None
         self.colourAncestory("red", 1)
         b.colourAncestory("blue", 1)
@@ -151,7 +151,7 @@ class DAGNode:
             self.degreeA = degree
         elif  degree > self.degreeA:
             self.degreeA = degree
-        print("Node: " + str(self.data)+ " colour: " +self.colour + " degree: " + str(self.degree))
+        #print("Node: " + str(self.data)+ " colour: " +self.colour + " degree: " + str(self.degree))
         for i in self.parents:
             i.colourAncestory(colour, self.degreeA+1)
 
@@ -164,46 +164,9 @@ class DAGNode:
                     lowest = i
             else:
                 i.findLowestPurple(a, b, lowest)
-        print("Node: " + str(self.data) + " Colour: " + self.colour)
+        #print("Node: " + str(self.data) + " Colour: " + self.colour)
         
         return lowest
 
         
-        
-root = DAGNode(1)
-a = DAGNode(2)
-b = DAGNode(3)
-c = DAGNode(4)
-d = DAGNode(5)
-
-root.insert(a)
-root.insert(b)
-b.insert(c)
-b.insert(d)
-
-#root = DAGNode(1)
-#b = DAGNode(3)
-#c = DAGNode(4)
-#d = DAGNode(5)
-#e = DAGNode(6)
-#f = DAGNode(7)
-#g = DAGNode(8)
-#h = DAGNode(9)
-
-#root.insert(b)
-#root.insert(c)
-#root.insert(d)
-#b.insert(g)
-#b.insert(e)
-#c.insert(f)
-#g.insert(h)
-#e.insert(h)
-#f.insert(h)
-
-
-#lca = h.LCA(d, root)
-lca = c.LCA(d, root)
-print(lca.data)
-#for node in b.children:
-#    for i in node.parents:
-#        print(i.degreeA)
+ 

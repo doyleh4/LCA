@@ -62,7 +62,54 @@ class TestLCA(unittest.TestCase):
         a.insert(c, "left")
         self.assertEqual(root.LowestCommonAncestor(c, b), 1)
         print("The LCA between Node C and Node B is expected 1 and got " + str(root.LowestCommonAncestor(c, b)))
+
+
+    def test_DAGNode(self):
+        root = LCA.DAGNode(1)
+        self.assertEqual(root.data, 1)
+
+    def test_DAG_insert(self):
+        root = LCA.DAGNode(1)
+        a = LCA.DAGNode(2)
+        b = LCA.DAGNode(3)
+        c = LCA.DAGNode(4)
+        d = LCA.DAGNode(5)
+
+        root.insert(a)
+        root.insert(b)
+        b.insert(c)
+        b.insert(d)
         
+        if (self.assertEqual(root.data, 1) and self.assertEqual(root.children[0], a) and self.assertEqual(root.children[0], b) and self.assertEqual(a.children, [])
+            and self.assertEqual(b.children[0], c) and self.assertEqual(b.children[0], d)):
+            print("Test for normal DAG insertion ran succesfully")
+        else: print("Test for normal DAG insertion failed")
+
+    #no need to test if a node is already occupied as a parents can have as many children, and a child as many parents
+    def test_DAGLCA(self):
+        root = LCA.DAGNode(1)
+        b = LCA.DAGNode(3)
+        c = LCA.DAGNode(4)
+        d = LCA.DAGNode(5)
+        e = LCA.DAGNode(6)
+        f = LCA.DAGNode(7)
+        g = LCA.DAGNode(8)
+        h = LCA.DAGNode(9)
+        z = LCA.DAGNode(99)
+
+        root.insert(b)
+        root.insert(c)
+        root.insert(d)
+        b.insert(g)
+        b.insert(e)
+        c.insert(f)
+        g.insert(h)
+        e.insert(h)
+        f.insert(h)
+
+        self.assertEqual(h.LCA(b, root), b)         #test 2 nodes that are close to each other
+        self.assertEqual(h.LCA(d, root), root)      #test when only the root is common
+        self.assertEqual(h.LCA(z, root), None)      #test no common
 
 if __name__ == '__main__':
     unittest.main()
