@@ -134,8 +134,9 @@ class DAGNode:
         result = None
         self.colourAncestory("red", 1)
         b.colourAncestory("blue", 1)
-
-        result = root.findLowestPurple(self, b)
+        if root.colour == "purple":
+            lowest = root
+            result = lowest.findLowestPurple(self, b, lowest)
         return result
 
 
@@ -154,52 +155,54 @@ class DAGNode:
         for i in self.parents:
             i.colourAncestory(colour, self.degreeA+1)
 
-    def findLowestPurple(self, a,  b):
-        lowest = None
+    def findLowestPurple(self, a,  b, lowest):
         for i in self.children:
-            if self != a and self != b:
-                if i.colour != "purple": 
-                    i.findLowestPurple(a, b)
+            if i.colour == "purple": 
                 if lowest == None:
                     lowest = i     
                 else:
-                    lowest = i   
+                    lowest = i
+            else:
+                i.findLowestPurple(a, b, lowest)
+        print("Node: " + str(self.data) + " Colour: " + self.colour)
+        
         return lowest
 
         
         
-#root = DAGNode(1)
-#a = DAGNode(2)
-#b = DAGNode(3)
-#c = DAGNode(4)
-#d = DAGNode(5)
-
-#root.insert(a)
-#root.insert(b)
-#b.insert(c)
-#b.insert(d)
-
 root = DAGNode(1)
+a = DAGNode(2)
 b = DAGNode(3)
 c = DAGNode(4)
 d = DAGNode(5)
-e = DAGNode(6)
-f = DAGNode(7)
-g = DAGNode(8)
-h = DAGNode(9)
 
+root.insert(a)
 root.insert(b)
-root.insert(c)
-root.insert(d)
-b.insert(g)
-b.insert(e)
-c.insert(f)
-g.insert(h)
-e.insert(h)
-f.insert(h)
+b.insert(c)
+b.insert(d)
+
+#root = DAGNode(1)
+#b = DAGNode(3)
+#c = DAGNode(4)
+#d = DAGNode(5)
+#e = DAGNode(6)
+#f = DAGNode(7)
+#g = DAGNode(8)
+#h = DAGNode(9)
+
+#root.insert(b)
+#root.insert(c)
+#root.insert(d)
+#b.insert(g)
+#b.insert(e)
+#c.insert(f)
+#g.insert(h)
+#e.insert(h)
+#f.insert(h)
 
 
-lca = h.LCA(d, root)
+#lca = h.LCA(d, root)
+lca = c.LCA(d, root)
 print(lca.data)
 #for node in b.children:
 #    for i in node.parents:
