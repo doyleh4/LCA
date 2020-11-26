@@ -18,10 +18,14 @@ With more and more fields becoming reliant on new and old software we face the p
     4) Code refactoring - similar to code churning but it does affect code quality, it is essentially rewriting small snippets of code in order to maintain/improve on clarity and simplicity without changing its behaviour.<br/>
     5) Lead time - the time it takes between the initiation and completion of a product.<br/>
     6) Cycle time - the time it takes to complete a single task. <br/>
-    7) Deployment and commit frequency - how frequent a major code change/ deployment is committed/released.<br/>
-    8) Change failure percentage - simply the measure of failures in a code change so how many things has this change broken.<br/>
-    9) Mean time between failures - the average time between system breakdowns. This is crucial in measuring metrics for performance, safety and design.<br/>
-    10) Mean time to recover/repair - the average time it takes to correct a failure. This can measure employee productivity as it shows how quick they can solve a problem but can also measure metrics for performance, safety and design.<br/>
+    * Deployment and commit frequency 
+        How frequent a major code change/ deployment is committed/released.<br/>
+    * Change failure percentage 
+        Simply the measure of failures in a code change so how many things has this change broken.<br/>
+    * Mean time between failures
+        The average time between system breakdowns. This is crucial in measuring metrics for performance, safety and design.<br/>
+    * Mean time to recover/repair 
+        The average time it takes to correct a failure. This can measure employee productivity as it shows how quick they can solve a problem but can also measure metrics for performance, safety and design.<br/>
 
 Now that we have discussed how to measure software engineering we need to be able to the rules on tracking software engineering efficiency. Tracking software efficiency is important as it tells us how the 10 points above interact with each other to give us measurable data and also following these rules will result in a safe, efficient, understandable and clear program. There are 7 rules to follow when measuring efficiency 
 Software metrics should be easy to understand and code should be easy to understand and well commented/documented.
